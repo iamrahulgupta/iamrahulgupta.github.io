@@ -1,0 +1,116 @@
+:root {
+    --bg: #0f172a;
+    --text: #e2e8f0;
+    --accent: #38bdf8;
+    --card: #1e293b;
+}
+
+body.light {
+    --bg: #f8fafc;
+    --text: #0f172a;
+    --accent: #2563eb;
+    --card: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    transition: all 0.3s ease;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+}
+
+nav a {
+    margin-left: 20px;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.hero {
+    padding: 120px 20px 80px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.hero-links a {
+    margin: 0 15px;
+}
+
+.section {
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.skills span {
+    background: var(--card);
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin: 6px;
+    display: inline-block;
+}
+
+.project-card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.exp-item {
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.6;
+}
+
+/* Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
