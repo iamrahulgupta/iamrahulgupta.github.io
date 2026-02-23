@@ -68,7 +68,7 @@ body {
 }
 
 .hero-diagram {
-    display: hidden; /* grid;*/
+    display: grid;
     grid-template-columns: repeat(2, 120px);
     gap: 20px;
 }
