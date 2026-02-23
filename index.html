@@ -11,117 +11,120 @@
 
 <body>
 
+    <div class="background-animation"></div>
+
     <header class="navbar">
         <div class="logo">Rahul Gupta</div>
         <nav>
             <a href="#about">About</a>
-            <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#experience">Experience</a>
         </nav>
-        <button id="theme-toggle">🌙</button>
+        <div class="nav-actions">
+            <a href="resume/Resume-Rahul-Gupta.pdf" download class="resume-btn">Download Resume</a>
+            <button id="theme-toggle">🌙</button>
+        </div>
     </header>
 
+    <!-- HERO -->
     <section class="hero fade-in">
-        <h1>Senior Software Engineer</h1>
-        <p>Distributed Systems | DNS Security | Performance Engineering</p>
-        <div class="hero-links">
-            <a href="https://github.com/iamrahulgupta" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/iamrahulgupta/" target="_blank">LinkedIn</a>
-            <a href="mailto:mailgupta.rahul@gmail.com">Email</a>
+        <div class="hero-left">
+            <h1>Senior Software Engineer</h1>
+            <p>
+                Building secure, high-throughput distributed systems.<br>
+                DNS Security | Performance Engineering | Systems Architecture
+            </p>
+
+            <div class="hero-links">
+                <a href="https://github.com/iamrahulgupta" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/iamrahulgupta/" target="_blank">LinkedIn</a>
+                <a href="mailto:mailgupta.rahul@gmail.com">Email</a>
+            </div>
+        </div>
+
+        <!-- System Diagram Visual -->
+        <div class="hero-diagram">
+            <div class="node">Client</div>
+            <div class="node">Resolver</div>
+            <div class="node">ODoH Proxy</div>
+            <div class="node">Authoritative</div>
         </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about" class="section fade-in">
         <h2>About</h2>
         <p>
-            Senior Software Engineer with 13+ years of experience building high-throughput,
-            low-latency backend systems across networking and distributed platforms.
-            Strong expertise in C/C++ systems programming with production experience in Go and Python.
-            Deep focus on DNS security (DoT, DoH, ODoH), multithreading, memory management,
-            and performance optimization in large-scale environments.
+            13+ years designing and optimizing large-scale backend systems across
+            networking and distributed platforms. Strong C/C++ systems foundation,
+            with production experience in Go and Python. Deep focus on DNS security
+            (DoT, DoH, ODoH), multithreading, memory safety, and low-latency services.
         </p>
     </section>
 
-    <section id="skills" class="section fade-in">
-        <h2>Core Skills</h2>
-        <div class="skills">
-            <span>C / C++</span>
-            <span>Go</span>
-            <span>Python</span>
-            <span>Distributed Systems</span>
-            <span>DNS (DoT, DoH, ODoH)</span>
-            <span>Multithreading</span>
-            <span>Linux</span>
-            <span>Docker / Kubernetes</span>
-            <span>Performance Debugging</span>
-            <span>REST / gRPC</span>
-        </div>
-    </section>
-
+    <!-- PROJECTS -->
     <section id="projects" class="section fade-in">
-        <h2>Selected Projects</h2>
+        <h2>Selected Systems Work</h2>
 
         <div class="project-card">
             <h3>Oblivious DNS over HTTPS (ODoH)</h3>
-            <p>
-                Designed and implemented privacy-preserving DNS architecture improving
-                compliance and user privacy. Owned design, C/C++ implementation,
-                performance optimization, and production rollout.
-            </p>
+            <p>Architected and implemented privacy-preserving DNS protocol enhancements improving compliance and performance.</p>
         </div>
 
         <div class="project-card">
-            <h3>DNS over TLS (DoT) Integration</h3>
-            <p>
-                Modernized enterprise DNS stack by implementing secure transport layer support.
-                Focused on throughput, correctness, and low-latency request handling.
-            </p>
+            <h3>DNS over TLS (DoT)</h3>
+            <p>Modernized enterprise DNS stack with secure transport integration and optimized request handling.</p>
         </div>
 
         <div class="project-card">
-            <h3>High-Throughput Telecom Mediation System</h3>
-            <p>
-                Built C++ backend services processing large-scale telecom CDRs
-                with emphasis on concurrency, memory safety, and performance tuning.
-            </p>
-        </div>
-
-        <div class="project-card">
-            <h3>Engineering Automation Tooling</h3>
-            <p>
-                Developed Python-based regression and automation frameworks
-                improving debugging efficiency and reducing validation cycles.
-            </p>
+            <h3>High-Throughput Telecom Mediation</h3>
+            <p>Built C++ multi-threaded backend services processing telecom CDRs at scale.</p>
         </div>
     </section>
 
+    <!-- TIMELINE EXPERIENCE -->
     <section id="experience" class="section fade-in">
-        <h2>Experience</h2>
+        <h2>Experience Timeline</h2>
 
-        <div class="exp-item">
-            <h3>Senior Software Engineer — F5, Inc.</h3>
-            <p>2022 – 2025 | Hyderabad</p>
-        </div>
+        <div class="timeline">
 
-        <div class="exp-item">
-            <h3>Engineer III — F5, Inc.</h3>
-            <p>2020 – 2022</p>
-        </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Senior Software Engineer — F5</h3>
+                    <span>2022 – 2025</span>
+                    <p>Owned DNS security features, ODoH implementation, and performance optimization in BIG-IP DNS.</p>
+                </div>
+            </div>
 
-        <div class="exp-item">
-            <h3>Associate Consultant — GlobalLogic</h3>
-            <p>2019 – 2020</p>
-        </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Software Engineer III — F5</h3>
+                    <span>2020 – 2022</span>
+                    <p>Implemented DNS over TLS and enhanced enterprise networking stack.</p>
+                </div>
+            </div>
 
-        <div class="exp-item">
-            <h3>Technical Leader — Capgemini Engineering</h3>
-            <p>2012 – 2018</p>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Associate Consultant — GlobalLogic</h3>
+                    <span>2019 – 2020</span>
+                    <p>Developed C++ distributed mediation systems for telecom platforms.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Technical Leader — Capgemini Engineering</h3>
+                    <span>2012 – 2018</span>
+                    <p>Designed backend telecom billing systems with strong concurrency focus.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <footer>
-        © 2026 Rahul Gupta — Built for clarity, performance, and systems depth.
+        © 2026 Rahul Gupta — Systems. Security. Scale.
     </footer>
 
     <script src="js/main.js"></script>
