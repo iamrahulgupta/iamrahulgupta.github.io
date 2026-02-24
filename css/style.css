@@ -391,3 +391,49 @@ footer {
   padding: 40px;
   color: var(--text-muted);
 }
+
+/* ======================================================
+   THEME TOGGLE ICONS
+====================================================== */
+
+.theme-toggle {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-secondary);
+  position: absolute;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Light Mode: show moon */
+.icon-sun { opacity: 0; transform: rotate(90deg); }
+.icon-moon { opacity: 1; }
+
+/* Dark Mode: show sun */
+[data-theme="dark"] .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+[data-theme="dark"] .icon-moon {
+  opacity: 0;
+  transform: rotate(-90deg);
+}

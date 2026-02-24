@@ -1,8 +1,5 @@
 var _a, _b, _c, _d;
 const toggleBtn = document.querySelector("#theme-toggle");
-if (localStorage.getItem("theme") === "dark") {
-    document.documentElement.setAttribute("data-theme", "dark");
-}
 toggleBtn === null || toggleBtn === void 0 ? void 0 : toggleBtn.addEventListener("click", () => {
     const current = document.documentElement.getAttribute("data-theme");
     const next = current === "dark" ? "light" : "dark";
