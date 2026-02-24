@@ -85,25 +85,31 @@
 
     <div class="background-animation"></div>
 
-    <header class="navbar">
-        <div class="logo">Rahul Gupta</div>
+    <header class="site-header">
+
+        <!-- Left: Brand -->
+        <div class="header-brand">
+            <a href="/">Rahul Gupta</a>
+        </div>
+
+        <!-- Center: Navigation -->
         <nav class="nav-links">
             <a href="#about">Overview</a>
             <a href="#projects">Systems Work</a>
             <a href="#experience">Career</a>
         </nav>
-        <div class="nav-actions">
-            <a 
-                href="resume/Rahul_Gupta_Resume.pdf" 
-                target="_blank" 
-                class="resume-btn"
-                id="resume-link"
-                data-resume="ATS-Optimized"
-            >
-                View Resume
-            </a>
 
-            <span id="last-updated" class="last-updated"></span>
+        <!-- Right: Actions -->
+        <div class="header-actions">
+            <a href="/resume/Rahul_Gupta_Resume.pdf"
+            class="resume-btn"
+            target="_blank"
+            rel="noopener">
+            <span class="resume-main">View Resume</span>
+            <span class="resume-sub" id="resume-updated">
+                Last updated — Feb 2026
+            </span>
+            </a>
 
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
             <!-- Sun Icon -->
@@ -124,6 +130,7 @@
             </svg>
             </button>
         </div>
+
     </header>
 
     <!-- HERO -->
