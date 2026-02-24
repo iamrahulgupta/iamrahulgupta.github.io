@@ -1,56 +1,56 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const toggleBtn = document.getElementById("theme-toggle");
-if (toggleBtn) {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "light") {
-        document.body.classList.add("light");
-        toggleBtn.textContent = "☀️";
-    }
-    toggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("light");
-        const isLight = document.body.classList.contains("light");
-        localStorage.setItem("theme", isLight ? "light" : "dark");
-        toggleBtn.textContent = isLight ? "☀️" : "🌙";
-    });
+var _a, _b, _c, _d;
+const toggleBtn = document.querySelector("#theme-toggle");
+if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
 }
-const faders = document.querySelectorAll(".fade-in");
-const appearOptions = {
-    threshold: 0.2
-};
-const appearOnScroll = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-        if (!entry.isIntersecting)
-            return;
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-    });
-}, appearOptions);
-faders.forEach((fader) => {
-    appearOnScroll.observe(fader);
+toggleBtn === null || toggleBtn === void 0 ? void 0 : toggleBtn.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
 });
-const resumeLink = document.getElementById("resume-link");
-if (resumeLink) {
-    resumeLink.addEventListener("click", () => {
-        console.log("Resume clicked - ATS version");
-        const currentCount = Number(localStorage.getItem("resumeClicks")) || 0;
-        localStorage.setItem("resumeClicks", String(currentCount + 1));
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
     });
-}
-const lastUpdatedEl = document.getElementById("last-updated");
+}, { threshold: 0.1 });
+document.querySelectorAll(".fade-in").forEach(el => {
+    observer.observe(el);
+});
+window.addEventListener("scroll", () => {
+    const nav = document.querySelector(".navbar");
+    if (!nav)
+        return;
+    nav.style.padding = window.scrollY > 40
+        ? "12px 40px"
+        : "18px 40px";
+});
+const lastUpdatedEl = document.querySelector(".last-updated");
 if (lastUpdatedEl) {
-    fetch("resume/Rahul_Gupta_Resume.pdf", { method: "HEAD" })
-        .then((response) => {
-        const lastModified = response.headers.get("Last-Modified");
-        if (lastModified) {
-            const formattedDate = new Date(lastModified).toLocaleDateString();
-            lastUpdatedEl.textContent = `Updated: ${formattedDate}`;
-        }
-        else {
-            lastUpdatedEl.textContent = "";
-        }
-    })
-        .catch(() => {
-        lastUpdatedEl.textContent = "";
-    });
+    const date = new Date(document.lastModified);
+    lastUpdatedEl.textContent =
+        "Last updated: " + date.toLocaleDateString();
 }
+function trackEvent(eventName, label) {
+    if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", eventName, {
+            event_category: "engagement",
+            event_label: label
+        });
+    }
+}
+(_a = document.querySelector(".resume-btn")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
+    trackEvent("resume_click", "ATS Resume");
+});
+(_b = document.querySelector('a[href*="github.com"]')) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
+    trackEvent("github_click", "GitHub");
+});
+(_c = document.querySelector('a[href*="linkedin.com"]')) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
+    trackEvent("linkedin_click", "LinkedIn");
+});
+(_d = document.querySelector('a[href^="mailto:"]')) === null || _d === void 0 ? void 0 : _d.addEventListener("click", () => {
+    trackEvent("email_click", "Email");
+});
+export {};

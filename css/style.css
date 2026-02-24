@@ -1,209 +1,360 @@
+/* ======================================================
+   COLOR SYSTEM
+====================================================== */
+
 :root {
-    --bg: #0f172a;
-    --text: #e2e8f0;
-    --accent: #38bdf8;
-    --card: #1e293b;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #eef2f7;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --accent-primary: #2563eb;
+  --accent-soft: #dbeafe;
+
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-body.light {
-    --bg: #f8fafc;
-    --text: #0f172a;
-    --accent: #2563eb;
-    --card: #ffffff;
+/* Dark Mode */
+
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1f2937;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --accent-primary: #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.15);
+
+  --card-bg: #111827;
+  --border-color: #334155;
+
+  --shadow-soft: 0 6px 25px rgba(0, 0, 0, 0.4);
 }
+
+/* ======================================================
+   GLOBAL BASE
+====================================================== */
 
 body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    transition: 0.3s ease;
-    overflow-x: hidden;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
-/* Animated Gradient Background */
-.background-animation {
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(-45deg, #1e293b, #0f172a, #1d4ed8, #0ea5e9);
-    background-size: 400% 400%;
-    animation: gradientShift 20s ease infinite;
-    z-index: -1;
-    opacity: 0.15;
+/* Subtle engineering grid */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background-image:
+    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
+
+  background-size: 40px 40px;
+  opacity: 0.04;
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+[data-theme="dark"] body::before {
+  opacity: 0.06;
 }
+
+h1 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+small,
+.last-updated,
+.hero-meta span {
+  color: var(--text-muted);
+}
+
+/* ======================================================
+   GLASS NAVBAR
+====================================================== */
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 40px;
-    align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 40px;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
 }
 
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+[data-theme="dark"] .navbar {
+  background: rgba(15, 23, 42, 0.65);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.resume-btn {
-    padding: 8px 14px;
-    background: var(--accent);
-    color: white;
-    border-radius: 6px;
-    font-size: 0.9rem;
-}
+/* ======================================================
+   HERO
+====================================================== */
 
 .hero {
-    display: flex;
-    justify-content: space-between;
-    padding: 120px 10%;
-    flex-wrap: wrap;
+  min-height: 85vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px 10%;
+  flex-wrap: wrap;
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary),
+    var(--bg-tertiary)
+  );
 }
 
-.hero-diagram {
-    display: grid;
-    grid-template-columns: repeat(2, 120px);
-    gap: 20px;
+.hero-left {
+  max-width: 600px;
 }
 
-.node {
-    padding: 20px;
-    background: var(--card);
-    border-radius: 8px;
-    text-align: center;
-    transition: 0.3s ease;
-}
-
-.node:hover {
-    transform: scale(1.05);
-}
+/* ======================================================
+   SECTIONS
+====================================================== */
 
 .section {
-    padding: 80px 10%;
-    max-width: 1000px;
-    margin: auto;
+  padding: 100px 10%;
+  max-width: 1000px;
+  margin: auto;
+  background: var(--bg-secondary);
 }
 
-.project-card {
-    background: var(--card);
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    transition: 0.3s ease;
+.section + .section {
+  border-top: 1px solid var(--border-color);
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Timeline */
-.timeline {
-    position: relative;
-    margin-left: 20px;
-    border-left: 2px solid var(--accent);
-}
-
-.timeline-item {
-    margin-bottom: 40px;
-    padding-left: 20px;
-    position: relative;
-}
-
-.timeline-item::before {
-    content: "";
-    position: absolute;
-    left: -10px;
-    top: 5px;
-    width: 16px;
-    height: 16px;
-    background: var(--accent);
-    border-radius: 50%;
-}
-
-/* Animation */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: 0.8s ease;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-footer {
-    text-align: center;
-    padding: 40px;
-    opacity: 0.7;
-}
-
-/* Control visibility */
-
-/* Resume Button Animation */
-.resume-btn {
-    padding: 8px 16px;
-    background: var(--accent);
-    color: white;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.resume-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-}
-
-.resume-btn::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: -100%;
-    background: rgba(255,255,255,0.2);
-    transition: 0.4s;
-}
-
-.resume-btn:hover::after {
-    left: 100%;
-}
-
-/* Last Updated */
-.last-updated {
-    font-size: 0.75rem;
-    opacity: 0.7;
-}
+/* ======================================================
+   METRICS
+====================================================== */
 
 .metrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
+  gap: 24px;
   text-align: center;
 }
 
+.metric {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
 .metric h3 {
-  color: var(--accent);
+  color: var(--accent-primary);
   font-size: 1.6rem;
 }
 
-.open-to {
-  margin-top: 15px;
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 20px;
-  background: var(--card);
-  font-size: 0.8rem;
-  opacity: 0.85;
+/* ======================================================
+   CARDS
+====================================================== */
+
+.project-card,
+.node {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  margin-bottom: 32px;
+}
+
+.project-card:hover,
+.metric:hover,
+.node:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .project-card:hover,
+[data-theme="dark"] .metric:hover,
+[data-theme="dark"] .node:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ======================================================
+   TIMELINE
+====================================================== */
+
+.timeline {
+  margin-left: 20px;
+  border-left: 2px solid var(--border-color);
+}
+
+.timeline-item {
+  margin-bottom: 40px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+}
+
+/* ======================================================
+   BUTTONS
+====================================================== */
+
+.resume-btn {
+  padding: 10px 18px;
+  background: var(--accent-primary);
+  color: white;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.resume-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.resume-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background: rgba(255,255,255,0.2);
+  transition: 0.4s;
+}
+
+.resume-btn:hover::after {
+  left: 100%;
+}
+
+.secondary-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.secondary-btn:hover {
+  background: var(--accent-soft);
+}
+
+/* ======================================================
+   SOCIAL LINKS
+====================================================== */
+
+.social-links {
+  display: flex;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.social-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-4px);
+  border: 1px solid var(--accent-primary);
+}
+
+.social-links a:hover .social-icon {
+  color: var(--accent-primary);
+}
+
+/* ======================================================
+   FADE-IN ANIMATION
+====================================================== */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+footer {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
 }

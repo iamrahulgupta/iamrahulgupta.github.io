@@ -1,76 +1,89 @@
-// Theme Toggle
-const toggleBtn = document.getElementById("theme-toggle") as HTMLButtonElement | null;
+/* ======================================================
+   THEME TOGGLE
+====================================================== */
 
-if (toggleBtn) {
-    const savedTheme: string | null = localStorage.getItem("theme");
+const toggleBtn = document.querySelector("#theme-toggle");
 
-    if (savedTheme === "light") {
-        document.body.classList.add("light");
-        toggleBtn.textContent = "☀️";
-    }
-
-    toggleBtn.addEventListener("click", (): void => {
-        document.body.classList.toggle("light");
-
-        const isLight: boolean = document.body.classList.contains("light");
-
-        localStorage.setItem("theme", isLight ? "light" : "dark");
-        toggleBtn.textContent = isLight ? "☀️" : "🌙";
-    });
+if (localStorage.getItem("theme") === "dark") {
+  document.documentElement.setAttribute("data-theme", "dark");
 }
 
-// Scroll Animation (IntersectionObserver)
-const faders: NodeListOf<Element> = document.querySelectorAll(".fade-in");
+toggleBtn?.addEventListener("click", () => {
+  const current = document.documentElement.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
 
-const appearOptions: IntersectionObserverInit = {
-    threshold: 0.2
-};
-
-const appearOnScroll: IntersectionObserver = new IntersectionObserver(
-    (entries: IntersectionObserverEntry[], observer: IntersectionObserver): void => {
-        entries.forEach((entry: IntersectionObserverEntry): void => {
-            if (!entry.isIntersecting) return;
-
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-        });
-    },
-    appearOptions
-);
-
-faders.forEach((fader: Element): void => {
-    appearOnScroll.observe(fader);
+  document.documentElement.setAttribute("data-theme", next!);
+  localStorage.setItem("theme", next!);
 });
 
-// Resume Analytics Tracking
-const resumeLink = document.getElementById("resume-link") as HTMLAnchorElement | null;
+/* ======================================================
+   SCROLL FADE-IN
+====================================================== */
 
-if (resumeLink) {
-    resumeLink.addEventListener("click", (): void => {
-        console.log("Resume clicked - ATS version");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.1 });
 
-        // Simple analytics counter (localStorage based)
-        const currentCount: number = Number(localStorage.getItem("resumeClicks")) || 0;
-        localStorage.setItem("resumeClicks", String(currentCount + 1));
-    });
-}
+document.querySelectorAll(".fade-in").forEach(el => {
+  observer.observe(el);
+});
 
-// Dynamic "Last Updated" Timestamp
-const lastUpdatedEl = document.getElementById("last-updated") as HTMLSpanElement | null;
+/* ======================================================
+   NAVBAR SHRINK ON SCROLL
+====================================================== */
 
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector(".navbar") as HTMLElement | null;
+  if (!nav) return;
+
+  nav.style.padding = window.scrollY > 40
+    ? "12px 40px"
+    : "18px 40px";
+});
+
+/* ======================================================
+   LAST UPDATED TIMESTAMP
+====================================================== */
+
+const lastUpdatedEl = document.querySelector(".last-updated");
 if (lastUpdatedEl) {
-    fetch("resume/Rahul_Gupta_Resume.pdf", { method: "HEAD" })
-        .then((response: Response) => {
-            const lastModified: string | null = response.headers.get("Last-Modified");
-
-            if (lastModified) {
-                const formattedDate: string = new Date(lastModified).toLocaleDateString();
-                lastUpdatedEl.textContent = `Updated: ${formattedDate}`;
-            } else {
-                lastUpdatedEl.textContent = "";
-            }
-        })
-        .catch(() => {
-            lastUpdatedEl.textContent = "";
-        });
+  const date = new Date(document.lastModified);
+  lastUpdatedEl.textContent =
+    "Last updated: " + date.toLocaleDateString();
 }
+
+/* ======================================================
+   GOOGLE ANALYTICS EVENT TRACKING
+====================================================== */
+
+function trackEvent(eventName: string, label: string) {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", eventName, {
+      event_category: "engagement",
+      event_label: label
+    });
+  }
+}
+
+document.querySelector(".resume-btn")?.addEventListener("click", () => {
+  trackEvent("resume_click", "ATS Resume");
+});
+
+document.querySelector('a[href*="github.com"]')
+  ?.addEventListener("click", () => {
+    trackEvent("github_click", "GitHub");
+  });
+
+document.querySelector('a[href*="linkedin.com"]')
+  ?.addEventListener("click", () => {
+    trackEvent("linkedin_click", "LinkedIn");
+  });
+
+document.querySelector('a[href^="mailto:"]')
+  ?.addEventListener("click", () => {
+    trackEvent("email_click", "Email");
+  });

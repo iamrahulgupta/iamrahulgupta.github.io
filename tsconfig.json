@@ -44,7 +44,7 @@
     // custom code
     // Environment Settings
     "target": "ES6",
-    "module": "none",
+    "module": "ES6",
     "outDir": "./js",
     "rootDir": "./src",
     "removeComments": true
