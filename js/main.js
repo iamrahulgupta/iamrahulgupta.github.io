@@ -50,4 +50,25 @@ function trackEvent(eventName, label) {
 (_d = document.querySelector('a[href^="mailto:"]')) === null || _d === void 0 ? void 0 : _d.addEventListener("click", () => {
     trackEvent("email_click", "Email");
 });
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-links a");
+window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(section => {
+        if (!(section instanceof HTMLElement))
+            return;
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+        if (window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight) {
+            current = section.id;
+        }
+    });
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+        }
+    });
+});
 export {};

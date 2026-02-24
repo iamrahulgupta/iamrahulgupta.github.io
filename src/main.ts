@@ -97,3 +97,34 @@ document.querySelector('a[href^="mailto:"]')
   ?.addEventListener("click", () => {
     trackEvent("email_click", "Email");
   });
+
+/* ======================================================
+   NAV ACTIVE LINK (Type-Safe Version)
+====================================================== */
+
+const sections = document.querySelectorAll<HTMLElement>("section[id]");
+const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-links a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    if (!(section instanceof HTMLElement)) return;
+    const sectionTop = section.offsetTop - 120;
+    const sectionHeight = section.offsetHeight;
+
+    if (
+      window.scrollY >= sectionTop &&
+      window.scrollY < sectionTop + sectionHeight
+    ) {
+      current = section.id;
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+});
