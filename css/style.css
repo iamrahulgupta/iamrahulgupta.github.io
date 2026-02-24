@@ -146,3 +146,64 @@ footer {
 }
 
 /* Control visibility */
+
+/* Resume Button Animation */
+.resume-btn {
+    padding: 8px 16px;
+    background: var(--accent);
+    color: white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.resume-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.resume-btn::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: rgba(255,255,255,0.2);
+    transition: 0.4s;
+}
+
+.resume-btn:hover::after {
+    left: 100%;
+}
+
+/* Last Updated */
+.last-updated {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.metric h3 {
+  color: var(--accent);
+  font-size: 1.6rem;
+}
+
+.open-to {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--card);
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
