@@ -11,12 +11,20 @@ export function initScrollAnimations() {
     });
 }
 export function initNavbarShrinkOnScroll() {
-    window.addEventListener("scroll", () => {
-        const nav = document.querySelector(".navbar");
+    let lastScrollY = 0;
+    let ticking = false;
+    const updateNavbarPadding = () => {
+        const nav = document.querySelector(".site-header");
         if (!nav)
             return;
-        nav.style.padding = window.scrollY > 40
-            ? "12px 40px"
-            : "18px 40px";
-    });
+        nav.style.padding = lastScrollY > 40 ? "12px 40px" : "18px 40px";
+        ticking = false;
+    };
+    window.addEventListener("scroll", () => {
+        lastScrollY = window.scrollY;
+        if (!ticking) {
+            window.requestAnimationFrame(updateNavbarPadding);
+            ticking = true;
+        }
+    }, { passive: true });
 }

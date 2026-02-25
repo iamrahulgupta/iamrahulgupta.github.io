@@ -7,7 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
     initScrollAnimations();
     initNavbarShrinkOnScroll();
-    initAnalyticsTracking();
-    initNavigation();
     initLastUpdatedTimestamp();
+    if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => initNavigation());
+    }
+    else {
+        setTimeout(() => initNavigation(), 100);
+    }
+    if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => initAnalyticsTracking());
+    }
+    else {
+        setTimeout(() => initAnalyticsTracking(), 500);
+    }
 });

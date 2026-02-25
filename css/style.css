@@ -54,26 +54,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle engineering grid */
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-
-  background-image:
-    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
-
-  background-size: 40px 40px;
-  opacity: 0.04;
-}
-
-[data-theme="dark"] body::before {
-  opacity: 0.06;
-}
+/* Grid background removed for performance - use solid backgrounds instead */
 
 h1 {
   font-size: 2.8rem;
@@ -97,16 +78,15 @@ p {
 }
 
 small,
-.last-updated,
-.hero-meta span {
+.last-updated {
   color: var(--text-muted);
 }
 
 /* ======================================================
-   GLASS NAVBAR
+   GLASS NAVBAR (OPTIMIZED)
 ====================================================== */
 
-.navbar {
+.site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -125,41 +105,24 @@ small,
   transition: all 0.3s ease;
 }
 
-[data-theme="dark"] .navbar {
+[data-theme="dark"] .site-header {
   background: rgba(15, 23, 42, 0.65);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* ======================================================
-   3-COLUMN GRID HEADER (Elite Layout)
-====================================================== */
-
-.site-header {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-
-  padding: 16px 48px;
-
-  backdrop-filter: blur(16px);
-  background: var(--glass-bg);
-  border-bottom: 1px solid var(--border-color);
-
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-/* =========================
-   BRAND
-========================= */
-
+/* Header Layout */
 .header-brand a {
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
   color: var(--text-primary);
   letter-spacing: 0.5px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 /* =========================
@@ -205,34 +168,7 @@ small,
   color: var(--text-primary);
 }
 
-/* =========================
-   ACTIONS (RIGHT SIDE)
-========================= */
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-/* Resume button slightly compact for header */
-
-.resume-btn {
-  padding: 10px 20px;
-  max-width: 220px;
-  text-align: center;
-}
-
-.resume-main {
-  font-size: 0.95rem;
-}
-
-.resume-sub {
-  font-size: 0.7rem;
-  margin-top: 3px;
-  opacity: 0.85;
-  font-weight: 500;
-}
+/* Resume button in header */
 
 /* ======================================================
    HERO
@@ -265,6 +201,7 @@ small,
   max-width: 1000px;
   margin: auto;
   background: var(--bg-secondary);
+  contain: layout style paint;
 }
 
 .section + .section {
@@ -288,7 +225,7 @@ small,
   border-radius: 16px;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-soft);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .metric h3 {
@@ -297,31 +234,22 @@ small,
 }
 
 /* ======================================================
-   CARDS
+   CARDS & NODES (simplified)
 ====================================================== */
 
-.project-card,
-.node {
+.project-card {
   background: var(--card-bg);
   padding: 24px;
   border-radius: 16px;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-soft);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
   margin-bottom: 32px;
 }
 
 .project-card:hover,
-.metric:hover,
-.node:hover {
+.metric:hover {
   transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="dark"] .project-card:hover,
-[data-theme="dark"] .metric:hover,
-[data-theme="dark"] .node:hover {
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* ======================================================
@@ -378,7 +306,7 @@ small,
   font-weight: 600;
   letter-spacing: 0.3px;
 
-  transition: all 0.25s ease;
+  transition: transform 0.25s ease;
   box-shadow: var(--shadow-soft);
 }
 
@@ -419,14 +347,13 @@ small,
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-soft);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .social-icon {
   width: 22px;
   height: 22px;
   color: var(--text-secondary);
-  transition: all 0.3s ease;
 }
 
 .social-links a:hover {
@@ -511,11 +438,14 @@ footer {
 }
 
 /* ======================================================
-   SMOOTH SCROLL ANIMATION
+   SMOOTH SCROLL ANIMATION (disabled by default)
 ====================================================== */
 
-/*
-html {
-  scroll-behavior: smooth;
-}*/
-
+/* Optimize animations - reduce motion on smaller devices */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -28,6 +28,96 @@
     <meta name="twitter:title" content="Rahul Gupta | Distributed Systems Engineer">
     <meta name="twitter:description" content="Senior Engineer specializing in DNS security, distributed systems, and performance engineering.">
 
+    <!-- Preload Google Font files for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Critical Inline CSS (above-the-fold) -->
+    <style>
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #eef2f7;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --accent-primary: #5b8cff;
+        --accent-secondary: #7b61ff;
+        --accent-soft: #dbeafe;
+        --card-bg: #ffffff;
+        --border-color: #e2e8f0;
+        --shadow-soft: 0 6px 18px rgba(0,0,0,0.12);
+      }
+      [data-theme="dark"] {
+        --bg-primary: #0f172a;
+        --bg-secondary: #111827;
+        --bg-tertiary: #1f2937;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --accent-primary: #3b82f6;
+        --accent-soft: rgba(59, 130, 246, 0.15);
+        --card-bg: #111827;
+        --border-color: #334155;
+        --shadow-soft: 0 6px 18px rgba(0,0,0,0.4);
+      }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        transition: background 0.3s ease, color 0.3s ease;
+        overflow-x: hidden;
+      }
+      h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 16px; }
+      h2 { font-size: 2rem; margin-bottom: 24px; }
+      h3 { font-size: 1.2rem; margin-bottom: 12px; }
+      p { color: var(--text-secondary); line-height: 1.6; }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 40px;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+      }
+      [data-theme="dark"] .site-header {
+        background: rgba(15, 23, 42, 0.65);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .header-brand a { font-weight: 600; font-size: 1rem; text-decoration: none; color: var(--text-primary); }
+      .nav-links { display: flex; justify-content: center; gap: 36px; }
+      .nav-links a { position: relative; font-size: 0.95rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.25s ease; }
+      .nav-links a:hover { color: var(--text-primary); }
+      .nav-links a::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 100%; height: 2px; background: var(--accent-primary); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+      .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+      .header-actions { display: flex; align-items: center; gap: 16px; }
+      .hero { min-height: 85vh; display: flex; justify-content: space-between; align-items: center; padding: 120px 10%; flex-wrap: wrap; background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)); }
+      .hero-left { max-width: 600px; }
+      .theme-toggle { background: var(--card-bg); border: 1px solid var(--border-color); width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.25s ease; }
+      .theme-toggle:hover { transform: translateY(-2px); border-color: var(--accent-primary); }
+      .icon-sun { opacity: 0; transform: rotate(90deg); }
+      .icon-moon { opacity: 1; }
+      [data-theme="dark"] .icon-sun { opacity: 1; transform: rotate(0deg); }
+      [data-theme="dark"] .icon-moon { opacity: 0; transform: rotate(-90deg); }
+      .fade-in { opacity: 0; transform: translateY(20px); transition: 0.8s ease; }
+      .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+
+    <!-- Defer full stylesheet -->
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="css/style.css"></noscript>
+    
+    <!-- Load Google Fonts asynchronously -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"></noscript>
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -76,9 +166,6 @@
     ]
     }
     </script>
-    
-    <link rel="stylesheet" href="css/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -133,8 +220,9 @@
 
     </header>
 
+    <main>
     <!-- HERO -->
-    <section class="hero fade-in">
+    <section id="hero" class="hero fade-in">
         <div class="hero-left">
             <h1>Senior Software Engineer</h1>
             <div class="open-to">
@@ -214,7 +302,9 @@
         </div> -->
     </section>
 
-    <section class="section metrics fade-in">
+    <!-- METRICS -->
+    <section id="metrics" class="section metrics fade-in">
+        <h2>Key Metrics</h2>
 
     <div class="metric">
         <h3>13+ Years</h3>
@@ -253,23 +343,23 @@
     <section id="projects" class="section fade-in">
         <h2>Selected Systems Work</h2>
 
-        <div class="project-card">
+        <article class="project-card">
             <h3>Oblivious DNS over HTTPS (ODoH)</h3>
             <p>Architected and implemented privacy-preserving DNS protocol enhancements improving compliance and performance.</p>
         </div>
 
-        <div class="project-card">
+        <article class="project-card">
             <h3>DNS over TLS (DoT)</h3>
             <p>Modernized enterprise DNS stack with secure transport integration and optimized request handling.</p>
-        </div>
+        </article>
 
-        <div class="project-card">
+        <article class="project-card">
             <h3>High-Throughput Telecom Mediation</h3>
             <p>Built C++ multi-threaded backend services processing telecom CDRs at scale.</p>
-        </div>
+        </article>
     </section>
 
-    <section class="section fade-in">
+    <section id="core-expertise" class="section fade-in">
         <h2>Core Expertise</h2>
         <p>
             C/C++ Systems Programming · Go Backend Services · DNS Security Protocols · 
@@ -324,6 +414,7 @@
     </section>
 
     <!-- ENGINEERING PHILOSOPHY -->
+    <section id="engineering-philosophy" class="section fade-in" hidden>
     <!-- TODO: Add later
     <section class="section fade-in">
         <h2>Engineering Philosophy</h2>
@@ -331,21 +422,22 @@
             I believe scalable systems are built through clarity of architecture,
             performance discipline, and rigorous debugging. My focus is on building
             infrastructure that is secure, observable, and production-resilient.
-        </p>
-    </section> -->
+        </p>-->
+    </section>
 
     <!-- CURRENTLY EXPLORING -->
+    <section id="currently-exploring" class="section fade-in" hidden>
     <!-- TODO: Add Later
-    <section class="section fade-in">
         <h2>Currently Exploring</h2>
         <ul>
             <li>Advanced DNS privacy models</li>
             <li>eBPF-based observability</li>
             <li>High-performance Go networking</li>
             <li>Distributed tracing at scale</li>
-        </ul>
-    </section>-->
+        </ul> -->
+    </section>
 
+    <!-- CONTACT CTA -->
     <section class="section contact-cta fade-in">
       <h2>Interested in Building Scalable Systems Together?</h2>
         <p>
@@ -359,11 +451,12 @@
         </a>
     </section>
 
+    </main>
+
     <footer>
         © 2026 Rahul Gupta — Systems. Security. Scale.
     </footer>
 
     <script type="module" src="js/main.js"></script>
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /* ======================================================
    MAIN ENTRY POINT
-   Initializes all modules
+   Initializes all modules with priority order
 ====================================================== */
 
 import { initThemeToggle } from "./modules/theme.js";
@@ -9,12 +9,25 @@ import { initAnalyticsTracking } from "./modules/analytics.js";
 import { initNavigation } from "./modules/navigation.js";
 import { initLastUpdatedTimestamp } from "./modules/timestamp.js";
 
-// Initialize all modules when DOM is ready
+// Critical features: initiailize immediately
 document.addEventListener("DOMContentLoaded", () => {
+  // High priority: Theme and scroll animations
   initThemeToggle();
   initScrollAnimations();
   initNavbarShrinkOnScroll();
-  initAnalyticsTracking();
-  initNavigation();
   initLastUpdatedTimestamp();
+
+  // Medium priority: Navigation (after layout is stable)
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(() => initNavigation());
+  } else {
+    setTimeout(() => initNavigation(), 100);
+  }
+
+  // Low priority: Analytics (after page is interactive)
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(() => initAnalyticsTracking());
+  } else {
+    setTimeout(() => initAnalyticsTracking(), 500);
+  }
 });
