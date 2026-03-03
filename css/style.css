@@ -125,6 +125,11 @@ small,
   gap: 16px;
 }
 
+/* Mobile menu button - hidden by default on desktop */
+.mobile-menu-btn {
+  display: none;
+}
+
 /* =========================
    NAVIGATION
 ========================= */
@@ -618,18 +623,7 @@ footer {
 
   /* ===== Resume Button - Mobile ===== */
   .resume-btn {
-    padding: 10px 14px;
-    font-size: 0.75rem;
-    max-width: 100%;
-  }
-
-  .resume-main {
-    font-size: 0.8rem;
-  }
-
-  .resume-sub {
-    font-size: 0.65rem;
-    margin-top: 2px;
+    display: none;
   }
 
   /* ===== Hero Section ===== */
