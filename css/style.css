@@ -192,6 +192,17 @@ small,
   max-width: 600px;
 }
 
+.open-to {
+  display: inline-block;
+  padding: 10px 16px;
+  background: var(--accent-soft);
+  color: var(--accent-primary);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
 /* ======================================================
    SECTIONS
 ====================================================== */
@@ -217,6 +228,11 @@ small,
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 24px;
   text-align: center;
+}
+
+.metrics h2 {
+  grid-column: 1 / -1;
+  text-align: left;
 }
 
 .metric {
@@ -447,5 +463,507 @@ footer {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ======================================================
+   RESPONSIVE DESIGN - MOBILE FIRST
+====================================================== */
+
+/* TABLET BREAKPOINT: 768px and up */
+@media (max-width: 767px) {
+  /* ===== Root Font Scaling ===== */
+  html {
+    font-size: 15px;
+  }
+
+  /* ===== Global Typography ===== */
+  h1 {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* ===== Header/Navbar ===== */
+  .site-header {
+    padding: 14px 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-brand a {
+    font-size: 0.9rem;
+  }
+
+  /* Hide full navigation on mobile, show hamburger instead */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--card-bg);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  [data-theme="dark"] .nav-links {
+    background: rgba(17, 24, 39, 0.9);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
+  .nav-links a.active {
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--accent-primary);
+    padding-left: 13px;
+  }
+
+  /* Mobile hamburger menu */
+  .mobile-menu-btn {
+    display: flex;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    order: 3;
+  }
+
+  .mobile-menu-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-btn span::before,
+  .mobile-menu-btn span::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    left: 0;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-btn span::before {
+    top: -6px;
+  }
+
+  .mobile-menu-btn span::after {
+    bottom: -6px;
+  }
+
+  .mobile-menu-btn.active span {
+    background: transparent;
+  }
+
+  .mobile-menu-btn.active span::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+
+  .mobile-menu-btn.active span::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+  }
+
+  .header-actions {
+    gap: 8px;
+    order: 4;
+  }
+
+  /* ===== Resume Button - Mobile ===== */
+  .resume-btn {
+    padding: 10px 14px;
+    font-size: 0.75rem;
+    max-width: 100%;
+  }
+
+  .resume-main {
+    font-size: 0.8rem;
+  }
+
+  .resume-sub {
+    font-size: 0.65rem;
+    margin-top: 2px;
+  }
+
+  /* ===== Hero Section ===== */
+  .hero {
+    min-height: auto;
+    padding: 60px 16px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-left {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .open-to {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  /* ===== Social Links - Mobile ===== */
+  .social-links {
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .social-links a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ===== Sections - Mobile ===== */
+  .section {
+    padding: 60px 16px;
+    max-width: 100%;
+  }
+
+  /* ===== Metrics Grid - Mobile ===== */
+  .metrics {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .metric {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .metric h3 {
+    font-size: 1.3rem;
+  }
+
+  .metric p {
+    font-size: 0.85rem;
+  }
+
+  /* ===== Project Cards - Mobile ===== */
+  .project-card {
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+
+  .project-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .project-card p {
+    font-size: 0.85rem;
+  }
+
+  /* ===== Timeline - Mobile ===== */
+  .timeline {
+    margin-left: 0;
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .timeline-item {
+    margin-bottom: 24px;
+    padding-left: 0;
+    padding-top: 12px;
+    border-top: 2px solid var(--border-color);
+  }
+
+  .timeline-item::before {
+    display: none;
+  }
+
+  .timeline-item:first-child {
+    border-top: none;
+  }
+
+  .timeline-item h3 {
+    font-size: 0.95rem;
+  }
+
+  .timeline-item h4 {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  .timeline-item span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* ===== Contact CTA - Mobile ===== */
+  .contact-cta {
+    padding: 40px 16px;
+    text-align: center;
+  }
+
+  .contact-cta h2 {
+    font-size: 1.3rem;
+  }
+
+  .contact-cta p {
+    font-size: 0.9rem;
+  }
+
+  /* ===== Footer - Mobile ===== */
+  footer {
+    padding: 24px 16px;
+    font-size: 0.85rem;
+  }
+
+  /* ===== Theme Toggle - Mobile ===== */
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* SMALL MOBILE BREAKPOINT: 480px and below */
+@media (max-width: 479px) {
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+  }
+
+  /* ===== Header - Extra Small ===== */
+  .site-header {
+    padding: 12px 12px;
+  }
+
+  .header-brand a {
+    font-size: 0.8rem;
+  }
+
+  /* ===== Hero - Extra Small ===== */
+  .hero {
+    padding: 40px 12px;
+    min-height: auto;
+  }
+
+  .hero-left {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 1.4rem;
+  }
+
+  .open-to {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* ===== Sections - Extra Small ===== */
+  .section {
+    padding: 40px 12px;
+  }
+
+  /* ===== Resume Button - Extra Small ===== */
+  .resume-btn {
+    padding: 8px 12px;
+    font-size: 0.65rem;
+  }
+
+  .resume-main {
+    font-size: 0.7rem;
+  }
+
+  .resume-sub {
+    font-size: 0.6rem;
+  }
+
+  /* ===== Social Icons - Extra Small ===== */
+  .social-links {
+    gap: 12px;
+  }
+
+  .social-links a {
+    width: 36px;
+    height: 36px;
+  }
+
+  .social-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ===== Metrics - Extra Small ===== */
+  .metrics {
+    gap: 12px;
+  }
+
+  .metric {
+    padding: 12px;
+  }
+
+  .metric h3 {
+    font-size: 1.1rem;
+  }
+
+  /* ===== Timeline - Extra Small ===== */
+  .timeline-item {
+    margin-bottom: 20px;
+    padding-top: 10px;
+  }
+
+  /* ===== Footer - Extra Small ===== */
+  footer {
+    padding: 20px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* DESKTOP BREAKPOINT: 1200px and up */
+@media (min-width: 1200px) {
+  .section {
+    max-width: 1200px;
+    padding: 120px 10%;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hero {
+    min-height: 90vh;
+    padding: 140px 10%;
+  }
+}
+
+/* TABLET BREAKPOINT: 768px to 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .section {
+    max-width: 100%;
+    padding: 80px 40px;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero {
+    min-height: 80vh;
+    padding: 100px 40px;
+  }
+
+  /* Hide mobile menu on tablet and up */
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    position: static !important;
+    flex-direction: row !important;
+    gap: 36px !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .nav-links a {
+    padding: 0 !important;
+    font-size: 0.95rem;
+  }
+
+  .nav-links a::after {
+    display: block !important;
+  }
+
+  .nav-links a.active {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
   }
 }

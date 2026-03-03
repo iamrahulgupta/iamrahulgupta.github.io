@@ -7,6 +7,7 @@ const headerOffset = 80;
 export function initNavigation(): void {
   initNavActiveLink();
   initSmoothScroll();
+  initMobileMenu();
 }
 
 function initNavActiveLink(): void {
@@ -57,5 +58,37 @@ function initSmoothScroll(): void {
         behavior: "smooth"
       });
     });
+  });
+}
+
+function initMobileMenu(): void {
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const navLinks = document.getElementById("nav-links");
+
+  if (!mobileMenuBtn || !navLinks) return;
+
+  // Toggle menu on hamburger click
+  mobileMenuBtn.addEventListener("click", () => {
+    mobileMenuBtn.classList.toggle("active");
+    navLinks.classList.toggle("active");
+  });
+
+  // Close menu when a link is clicked
+  const links = navLinks.querySelectorAll<HTMLAnchorElement>("a");
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenuBtn.classList.remove("active");
+      navLinks.classList.remove("active");
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    const target = e.target as Node;
+    const isClickInsideHeader = mobileMenuBtn.contains(target) || navLinks.contains(target);
+    if (!isClickInsideHeader) {
+      mobileMenuBtn.classList.remove("active");
+      navLinks.classList.remove("active");
+    }
   });
 }

@@ -2,6 +2,7 @@ const headerOffset = 80;
 export function initNavigation() {
     initNavActiveLink();
     initSmoothScroll();
+    initMobileMenu();
 }
 function initNavActiveLink() {
     const sections = document.querySelectorAll("section[id]");
@@ -43,5 +44,30 @@ function initSmoothScroll() {
                 behavior: "smooth"
             });
         });
+    });
+}
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const navLinks = document.getElementById("nav-links");
+    if (!mobileMenuBtn || !navLinks)
+        return;
+    mobileMenuBtn.addEventListener("click", () => {
+        mobileMenuBtn.classList.toggle("active");
+        navLinks.classList.toggle("active");
+    });
+    const links = navLinks.querySelectorAll("a");
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+            mobileMenuBtn.classList.remove("active");
+            navLinks.classList.remove("active");
+        });
+    });
+    document.addEventListener("click", (e) => {
+        const target = e.target;
+        const isClickInsideHeader = mobileMenuBtn.contains(target) || navLinks.contains(target);
+        if (!isClickInsideHeader) {
+            mobileMenuBtn.classList.remove("active");
+            navLinks.classList.remove("active");
+        }
     });
 }
