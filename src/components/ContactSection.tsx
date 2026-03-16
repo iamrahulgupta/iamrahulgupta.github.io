@@ -20,7 +20,7 @@ const ContactSection = () => {
             </div>
 
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="mailto:rahul@example.com">
+              <a href="mailto:mailgupta.rahul@gmail.com">
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
                   <Mail className="h-5 w-5 mr-2" />
                   Get in Touch
