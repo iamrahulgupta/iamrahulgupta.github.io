@@ -68,7 +68,7 @@ const HeroSection = () => {
                 <Linkedin className="h-5 w-5" />
               </Button>
             </a>
-            <a href="mailto:rahul@example.com">
+            <a href="mailto:mailgupta.rahul@gmail.com">
               <Button variant="ghost" size="icon" className="rounded-full bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground">
                 <Mail className="h-5 w-5" />
               </Button>
