@@ -2,6 +2,13 @@ import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden">
       {/* Background glow effect */}
@@ -47,11 +54,11 @@ const HeroSection = () => {
 
           {/* CTA buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-16 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8">
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8" onClick={() => scrollToSection('contact')}>
               <Mail className="h-5 w-5 mr-2" />
               Get in Touch
             </Button>
-            <Button size="lg" variant="outline" className="border-border/50 hover:bg-secondary/50 font-semibold px-8">
+            <Button size="lg" variant="outline" className="border-border/50 hover:bg-secondary/50 font-semibold px-8" onClick={() => scrollToSection('work')}>
               View My Work
             </Button>
           </div>

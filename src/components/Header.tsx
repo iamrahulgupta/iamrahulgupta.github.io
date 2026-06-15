@@ -54,10 +54,12 @@ const Header = () => {
               <Linkedin className="h-5 w-5" />
             </Button>
           </a>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
-            <FileText className="h-4 w-4 mr-2" />
-            Resume
-          </Button>
+          <a href="/resume/Rahul_Gupta_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
+              <FileText className="h-4 w-4 mr-2" />
+              Resume
+            </Button>
+          </a>
         </div>
 
         {/* Mobile menu button */}
@@ -94,6 +96,12 @@ const Header = () => {
               <a href="https://linkedin.com/in/iamrahulgupta" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" size="icon">
                   <Linkedin className="h-5 w-5" />
+                </Button>
+              </a>
+              <a href="/resume/Rahul_Gupta_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
+                  <FileText className="h-4 w-4 mr-2" />
+                  Resume
                 </Button>
               </a>
             </div>
